@@ -1,1 +1,1759 @@
-# BigShack01.github.io
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Personal Dashboard</title>
+
+    <link href=https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Work+Sans:wght@300;400;500;600&display=swap rel="stylesheet">
+
+    <style>
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+        }
+
+ 
+
+        :root {
+
+            --color-bg: #0f0f0f;
+
+            --color-surface: #1a1a1a;
+
+            --color-text: #e8e8e8;
+
+            --color-text-dim: #a0a0a0;
+
+            --color-accent: #d4af37;
+
+            --color-accent-dim: #8b7626;
+
+            --color-border: #2a2a2a;
+
+            --font-display: 'Cormorant Garamond', serif;
+
+            --font-body: 'Work Sans', sans-serif;
+
+        }
+
+ 
+
+        body {
+
+            background: var(--color-bg);
+
+            color: var(--color-text);
+
+            font-family: var(--font-body);
+
+            line-height: 1.6;
+
+            overflow-x: hidden;
+
+        }
+
+ 
+
+        /* Animated background gradient */
+
+        body::before {
+
+            content: '';
+
+            position: fixed;
+
+            top: -50%;
+
+            left: -50%;
+
+            width: 200%;
+
+            height: 200%;
+
+            background: radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
+
+                        radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.02) 0%, transparent 50%);
+
+            animation: gradientShift 20s ease infinite;
+
+            pointer-events: none;
+
+            z-index: 0;
+
+        }
+
+ 
+
+        @keyframes gradientShift {
+
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+
+            50% { transform: translate(-10%, -10%) rotate(5deg); }
+
+        }
+
+ 
+
+        /* Navigation */
+
+        nav {
+
+            position: fixed;
+
+            top: 0;
+
+            right: 0;
+
+            padding: 2rem 3rem;
+
+            display: flex;
+
+            gap: 2rem;
+
+            z-index: 100;
+
+            mix-blend-mode: difference;
+
+        }
+
+ 
+
+        nav a {
+
+            color: var(--color-text);
+
+            text-decoration: none;
+
+            font-size: 0.875rem;
+
+            letter-spacing: 0.1em;
+
+            text-transform: uppercase;
+
+            font-weight: 500;
+
+            position: relative;
+
+            transition: opacity 0.3s ease;
+
+        }
+
+ 
+
+        nav a:hover {
+
+            opacity: 0.6;
+
+        }
+
+ 
+
+        nav a::after {
+
+            content: '';
+
+            position: absolute;
+
+            bottom: -4px;
+
+            left: 0;
+
+            width: 0;
+
+            height: 1px;
+
+            background: var(--color-accent);
+
+            transition: width 0.3s ease;
+
+        }
+
+ 
+
+        nav a:hover::after {
+
+            width: 100%;
+
+        }
+
+ 
+
+        /* Container */
+
+        .container {
+
+            max-width: 1400px;
+
+            margin: 0 auto;
+
+            padding: 0 3rem;
+
+            position: relative;
+
+            z-index: 1;
+
+        }
+
+ 
+
+        /* Hero Section */
+
+        .hero {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            position: relative;
+
+        }
+
+ 
+
+        .hero-content {
+
+            max-width: 900px;
+
+        }
+
+ 
+
+        .hero-label {
+
+            color: var(--color-accent);
+
+            font-size: 0.875rem;
+
+            letter-spacing: 0.2em;
+
+            text-transform: uppercase;
+
+            margin-bottom: 2rem;
+
+            opacity: 0;
+
+            animation: fadeInUp 1s ease forwards 0.2s;
+
+        }
+
+ 
+
+        .hero-title {
+
+            font-family: var(--font-display);
+
+            font-size: clamp(4rem, 10vw, 8rem);
+
+            font-weight: 300;
+
+            line-height: 0.95;
+
+            margin-bottom: 2rem;
+
+            letter-spacing: -0.02em;
+
+            opacity: 0;
+
+            animation: fadeInUp 1s ease forwards 0.4s;
+
+        }
+
+ 
+
+        .hero-title strong {
+
+            font-weight: 700;
+
+            display: block;
+
+            font-style: italic;
+
+        }
+
+ 
+
+        .hero-subtitle {
+
+            font-size: 1.25rem;
+
+            color: var(--color-text-dim);
+
+            max-width: 600px;
+
+            line-height: 1.8;
+
+            opacity: 0;
+
+            animation: fadeInUp 1s ease forwards 0.6s;
+
+        }
+
+ 
+
+        @keyframes fadeInUp {
+
+            from {
+
+                opacity: 0;
+
+                transform: translateY(30px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform: translateY(0);
+
+            }
+
+        }
+
+ 
+
+        /* Section Styling */
+
+        section {
+
+            padding: 8rem 0;
+
+            position: relative;
+
+        }
+
+ 
+
+        .section-number {
+
+            position: absolute;
+
+            left: -4rem;
+
+            top: 8rem;
+
+            font-family: var(--font-display);
+
+            font-size: 8rem;
+
+            font-weight: 700;
+
+            color: rgba(212, 175, 55, 0.05);
+
+            line-height: 1;
+
+            pointer-events: none;
+
+        }
+
+ 
+
+        .section-header {
+
+            margin-bottom: 4rem;
+
+        }
+
+ 
+
+        .section-label {
+
+            color: var(--color-accent);
+
+            font-size: 0.75rem;
+
+            letter-spacing: 0.2em;
+
+            text-transform: uppercase;
+
+            margin-bottom: 1rem;
+
+        }
+
+ 
+
+        .section-title {
+
+            font-family: var(--font-display);
+
+            font-size: clamp(2.5rem, 5vw, 4rem);
+
+            font-weight: 600;
+
+            line-height: 1.1;
+
+            margin-bottom: 1.5rem;
+
+        }
+
+ 
+
+        .section-description {
+
+            font-size: 1.125rem;
+
+            color: var(--color-text-dim);
+
+            max-width: 700px;
+
+        }
+
+ 
+
+        /* About Section - Resume */
+
+        .resume-grid {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 4rem;
+
+            margin-top: 3rem;
+
+        }
+
+ 
+
+        .resume-column h3 {
+
+            font-family: var(--font-display);
+
+            font-size: 1.5rem;
+
+            font-weight: 600;
+
+            margin-bottom: 2rem;
+
+            color: var(--color-accent);
+
+        }
+
+ 
+
+        .resume-item {
+
+            margin-bottom: 3rem;
+
+            padding-left: 2rem;
+
+            border-left: 1px solid var(--color-border);
+
+            transition: border-color 0.3s ease;
+
+        }
+
+ 
+
+        .resume-item:hover {
+
+            border-color: var(--color-accent);
+
+        }
+
+ 
+
+        .resume-item h4 {
+
+            font-size: 1.125rem;
+
+            font-weight: 600;
+
+            margin-bottom: 0.5rem;
+
+        }
+
+ 
+
+        .resume-item .meta {
+
+            color: var(--color-text-dim);
+
+            font-size: 0.875rem;
+
+            margin-bottom: 0.75rem;
+
+        }
+
+ 
+
+        .resume-item p {
+
+            color: var(--color-text-dim);
+
+            line-height: 1.7;
+
+        }
+
+ 
+
+        .bio-text {
+
+            background: var(--color-surface);
+
+            padding: 3rem;
+
+            border-radius: 2px;
+
+            border-left: 3px solid var(--color-accent);
+
+            font-size: 1.125rem;
+
+            line-height: 1.8;
+
+            color: var(--color-text-dim);
+
+            margin-bottom: 3rem;
+
+        }
+
+ 
+
+        /* Skills & Certificates */
+
+        .skills-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+            gap: 2rem;
+
+            margin-top: 3rem;
+
+        }
+
+ 
+
+        .skill-card {
+
+            background: var(--color-surface);
+
+            padding: 2.5rem;
+
+            border: 1px solid var(--color-border);
+
+            transition: all 0.4s ease;
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+ 
+
+        .skill-card::before {
+
+            content: '';
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 3px;
+
+            background: linear-gradient(90deg, var(--color-accent) 0%, transparent 100%);
+
+            transform: scaleX(0);
+
+            transform-origin: left;
+
+            transition: transform 0.4s ease;
+
+        }
+
+ 
+
+        .skill-card:hover {
+
+            border-color: var(--color-accent-dim);
+
+            transform: translateY(-5px);
+
+        }
+
+ 
+
+        .skill-card:hover::before {
+
+            transform: scaleX(1);
+
+        }
+
+ 
+
+        .skill-card h3 {
+
+            font-family: var(--font-display);
+
+            font-size: 1.75rem;
+
+            font-weight: 600;
+
+            margin-bottom: 1rem;
+
+        }
+
+ 
+
+        .skill-card .category {
+
+            color: var(--color-accent);
+
+            font-size: 0.75rem;
+
+            letter-spacing: 0.15em;
+
+            text-transform: uppercase;
+
+            margin-bottom: 1.5rem;
+
+        }
+
+ 
+
+        .skill-list {
+
+            list-style: none;
+
+        }
+
+ 
+
+        .skill-list li {
+
+            padding: 0.75rem 0;
+
+            border-bottom: 1px solid var(--color-border);
+
+            color: var(--color-text-dim);
+
+            transition: color 0.3s ease;
+
+        }
+
+ 
+
+        .skill-list li:last-child {
+
+            border-bottom: none;
+
+        }
+
+ 
+
+        .skill-list li:hover {
+
+            color: var(--color-text);
+
+        }
+
+ 
+
+        .certificate-badge {
+
+            display: inline-block;
+
+            background: rgba(212, 175, 55, 0.1);
+
+            color: var(--color-accent);
+
+            padding: 0.5rem 1rem;
+
+            border-radius: 2px;
+
+            font-size: 0.875rem;
+
+            margin-top: 1rem;
+
+        }
+
+ 
+
+        /* Projects Section */
+
+        .projects-grid {
+
+            display: grid;
+
+            gap: 4rem;
+
+            margin-top: 3rem;
+
+        }
+
+ 
+
+        .project-card {
+
+            display: grid;
+
+            grid-template-columns: 1.2fr 1fr;
+
+            gap: 3rem;
+
+            align-items: start;
+
+            padding: 3rem 0;
+
+            border-bottom: 1px solid var(--color-border);
+
+            transition: opacity 0.3s ease;
+
+        }
+
+ 
+
+        .project-card:last-child {
+
+            border-bottom: none;
+
+        }
+
+ 
+
+        .project-card:hover {
+
+            opacity: 0.8;
+
+        }
+
+ 
+
+        .project-visual {
+
+            aspect-ratio: 16/10;
+
+            background: linear-gradient(135deg, var(--color-surface) 0%, #252525 100%);
+
+            border: 1px solid var(--color-border);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-family: var(--font-display);
+
+            font-size: 3rem;
+
+            color: var(--color-accent);
+
+            transition: all 0.4s ease;
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+ 
+
+        .project-visual::before {
+
+            content: '';
+
+            position: absolute;
+
+            inset: 0;
+
+            background: radial-gradient(circle at 30% 40%, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+
+            opacity: 0;
+
+            transition: opacity 0.4s ease;
+
+        }
+
+ 
+
+        .project-card:hover .project-visual {
+
+            border-color: var(--color-accent);
+
+        }
+
+ 
+
+        .project-card:hover .project-visual::before {
+
+            opacity: 1;
+
+        }
+
+ 
+
+        .project-info h3 {
+
+            font-family: var(--font-display);
+
+            font-size: 2rem;
+
+            font-weight: 600;
+
+            margin-bottom: 1rem;
+
+        }
+
+ 
+
+        .project-tags {
+
+            display: flex;
+
+            gap: 0.75rem;
+
+            flex-wrap: wrap;
+
+            margin-bottom: 1.5rem;
+
+        }
+
+ 
+
+        .project-tag {
+
+            color: var(--color-accent);
+
+            font-size: 0.75rem;
+
+            letter-spacing: 0.1em;
+
+            text-transform: uppercase;
+
+            padding: 0.4rem 0.8rem;
+
+            border: 1px solid var(--color-accent-dim);
+
+        }
+
+ 
+
+        .project-description {
+
+            color: var(--color-text-dim);
+
+            line-height: 1.8;
+
+            margin-bottom: 1.5rem;
+
+        }
+
+ 
+
+        .project-link {
+
+            display: inline-block;
+
+            color: var(--color-accent);
+
+            text-decoration: none;
+
+            font-size: 0.875rem;
+
+            letter-spacing: 0.1em;
+
+            text-transform: uppercase;
+
+            position: relative;
+
+            padding-bottom: 2px;
+
+        }
+
+ 
+
+        .project-link::after {
+
+            content: '→';
+
+            margin-left: 0.5rem;
+
+            transition: transform 0.3s ease;
+
+            display: inline-block;
+
+        }
+
+ 
+
+        .project-link:hover::after {
+
+            transform: translateX(5px);
+
+        }
+
+ 
+
+        /* Footer */
+
+        footer {
+
+            padding: 4rem 0;
+
+            border-top: 1px solid var(--color-border);
+
+            margin-top: 8rem;
+
+        }
+
+ 
+
+        .footer-content {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+        }
+
+ 
+
+        .footer-text {
+
+            color: var(--color-text-dim);
+
+            font-size: 0.875rem;
+
+        }
+
+ 
+
+        .footer-links {
+
+            display: flex;
+
+            gap: 2rem;
+
+        }
+
+ 
+
+        .footer-links a {
+
+            color: var(--color-text-dim);
+
+            text-decoration: none;
+
+            font-size: 0.875rem;
+
+            letter-spacing: 0.1em;
+
+            text-transform: uppercase;
+
+            transition: color 0.3s ease;
+
+        }
+
+ 
+
+        .footer-links a:hover {
+
+            color: var(--color-accent);
+
+        }
+
+ 
+
+        /* Responsive */
+
+        @media (max-width: 1024px) {
+
+            .resume-grid {
+
+                grid-template-columns: 1fr;
+
+                gap: 3rem;
+
+            }
+
+ 
+
+            .project-card {
+
+                grid-template-columns: 1fr;
+
+            }
+
+ 
+
+            .section-number {
+
+                display: none;
+
+            }
+
+        }
+
+ 
+
+        @media (max-width: 768px) {
+
+            .container {
+
+                padding: 0 1.5rem;
+
+            }
+
+ 
+
+            nav {
+
+                padding: 1.5rem;
+
+                gap: 1rem;
+
+            }
+
+ 
+
+            section {
+
+                padding: 4rem 0;
+
+            }
+
+ 
+
+            .skills-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+ 
+
+            .footer-content {
+
+                flex-direction: column;
+
+                gap: 1.5rem;
+
+                text-align: center;
+
+            }
+
+        }
+
+ 
+
+        /* Scroll indicator */
+
+        .scroll-indicator {
+
+            position: fixed;
+
+            bottom: 3rem;
+
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            color: var(--color-accent);
+
+            font-size: 0.75rem;
+
+            letter-spacing: 0.15em;
+
+            text-transform: uppercase;
+
+            animation: bounce 2s ease infinite;
+
+            z-index: 10;
+
+        }
+
+ 
+
+        @keyframes bounce {
+
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+
+            50% { transform: translateX(-50%) translateY(-10px); }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <nav>
+
+        <a href="#about">About</a>
+
+        <a href="#skills">Skills</a>
+
+        <a href="#projects">Projects</a>
+
+    </nav>
+
+ 
+
+    <div class="container">
+
+        <!-- Hero Section -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="hero-label">Portfolio 2024</div>
+
+                <h1 class="hero-title">
+
+                    Your Name
+
+                    <strong>Digital Craftsperson</strong>
+
+                </h1>
+
+                <p class="hero-subtitle">
+
+                    Building exceptional digital experiences with precision, creativity, and a relentless pursuit of excellence. Specializing in crafting solutions that merge technical expertise with thoughtful design.
+
+                </p>
+
+            </div>
+
+            <div class="scroll-indicator">Scroll to explore</div>
+
+        </section>
+
+ 
+
+        <!-- About Section -->
+
+        <section id="about">
+
+            <div class="section-number">01</div>
+
+            <div class="section-header">
+
+                <div class="section-label">Getting to know me</div>
+
+                <h2 class="section-title">About & Experience</h2>
+
+                <p class="section-description">
+
+                    A journey through professional milestones, educational foundations, and the experiences that shaped my approach to problem-solving.
+
+                </p>
+
+            </div>
+
+ 
+
+            <div class="bio-text">
+
+                I'm a passionate professional dedicated to creating meaningful digital experiences. My work combines technical expertise with creative thinking, always striving to deliver solutions that make a real impact. I believe in continuous learning, attention to detail, and the power of collaboration.
+
+            </div>
+
+ 
+
+            <div class="resume-grid">
+
+                <div class="resume-column">
+
+                    <h3>Experience</h3>
+
+                    <div class="resume-item">
+
+                        <h4>Senior Software Engineer</h4>
+
+                        <div class="meta">Tech Company Inc. • 2021 - Present</div>
+
+                        <p>Leading development of scalable web applications, mentoring junior developers, and implementing best practices across the engineering team. Spearheaded migration to modern architecture resulting in 40% performance improvement.</p>
+
+                    </div>
+
+                    <div class="resume-item">
+
+                        <h4>Full Stack Developer</h4>
+
+                        <div class="meta">Digital Agency • 2018 - 2021</div>
+
+                        <p>Built custom solutions for diverse clients across industries. Collaborated with designers and stakeholders to deliver pixel-perfect implementations and robust backend systems.</p>
+
+                    </div>
+
+                    <div class="resume-item">
+
+                        <h4>Junior Developer</h4>
+
+                        <div class="meta">Startup Studios • 2016 - 2018</div>
+
+                        <p>Contributed to multiple product launches, gaining experience in rapid prototyping, agile methodologies, and full-stack development in a fast-paced environment.</p>
+
+                    </div>
+
+                </div>
+
+ 
+
+                <div class="resume-column">
+
+                    <h3>Education</h3>
+
+                    <div class="resume-item">
+
+                        <h4>Master of Computer Science</h4>
+
+                        <div class="meta">University Name • 2014 - 2016</div>
+
+                        <p>Specialized in software engineering and human-computer interaction. Thesis on modern web performance optimization techniques.</p>
+
+                    </div>
+
+                    <div class="resume-item">
+
+                        <h4>Bachelor of Science</h4>
+
+                        <div class="meta">College Name • 2010 - 2014</div>
+
+                        <p>Computer Science major with a minor in Design. Graduated with honors. Active in tech clubs and hackathons.</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+ 
+
+        <!-- Skills & Certificates Section -->
+
+        <section id="skills">
+
+            <div class="section-number">02</div>
+
+            <div class="section-header">
+
+                <div class="section-label">What I bring to the table</div>
+
+                <h2 class="section-title">Skills & Certifications</h2>
+
+                <p class="section-description">
+
+                    A comprehensive toolkit built through years of hands-on experience, continuous learning, and professional validation.
+
+                </p>
+
+            </div>
+
+ 
+
+            <div class="skills-grid">
+
+                <div class="skill-card">
+
+                    <div class="category">Frontend Development</div>
+
+                    <h3>User Interfaces</h3>
+
+                    <ul class="skill-list">
+
+                        <li>React, Vue.js, Next.js</li>
+
+                        <li>TypeScript & JavaScript (ES6+)</li>
+
+                        <li>HTML5, CSS3, Tailwind CSS</li>
+
+                        <li>Responsive Design & Accessibility</li>
+
+                        <li>Performance Optimization</li>
+
+                    </ul>
+
+                    <span class="certificate-badge">Certified React Developer</span>
+
+                </div>
+
+ 
+
+                <div class="skill-card">
+
+                    <div class="category">Backend Development</div>
+
+                    <h3>Server & APIs</h3>
+
+                    <ul class="skill-list">
+
+                        <li>Node.js, Express, NestJS</li>
+
+                        <li>Python, Django, FastAPI</li>
+
+                        <li>RESTful & GraphQL APIs</li>
+
+                        <li>PostgreSQL, MongoDB</li>
+
+                        <li>Authentication & Security</li>
+
+                    </ul>
+
+                    <span class="certificate-badge">AWS Certified Developer</span>
+
+                </div>
+
+ 
+
+                <div class="skill-card">
+
+                    <div class="category">DevOps & Tools</div>
+
+                    <h3>Infrastructure</h3>
+
+                    <ul class="skill-list">
+
+                        <li>Docker & Kubernetes</li>
+
+                        <li>CI/CD Pipelines</li>
+
+                        <li>AWS, Google Cloud, Azure</li>
+
+                        <li>Git & Version Control</li>
+
+                        <li>Monitoring & Analytics</li>
+
+                    </ul>
+
+                    <span class="certificate-badge">DevOps Professional</span>
+
+                </div>
+
+ 
+
+                <div class="skill-card">
+
+                    <div class="category">Design & UX</div>
+
+                    <h3>User Experience</h3>
+
+                    <ul class="skill-list">
+
+                        <li>UI/UX Design Principles</li>
+
+                        <li>Figma, Sketch, Adobe XD</li>
+
+                        <li>User Research & Testing</li>
+
+                        <li>Design Systems</li>
+
+                        <li>Prototyping & Wireframing</li>
+
+                    </ul>
+
+                    <span class="certificate-badge">UX Design Certified</span>
+
+                </div>
+
+ 
+
+                <div class="skill-card">
+
+                    <div class="category">Project Management</div>
+
+                    <h3>Leadership</h3>
+
+                    <ul class="skill-list">
+
+                        <li>Agile & Scrum Methodologies</li>
+
+                        <li>Team Leadership</li>
+
+                        <li>Technical Documentation</li>
+
+                        <li>Code Review & Mentoring</li>
+
+                        <li>Stakeholder Communication</li>
+
+                    </ul>
+
+                    <span class="certificate-badge">Scrum Master</span>
+
+                </div>
+
+ 
+
+                <div class="skill-card">
+
+                    <div class="category">Emerging Technologies</div>
+
+                    <h3>Innovation</h3>
+
+                    <ul class="skill-list">
+
+                        <li>Machine Learning Basics</li>
+
+                        <li>AI Integration & APIs</li>
+
+                        <li>Web3 & Blockchain</li>
+
+                        <li>Progressive Web Apps</li>
+
+                        <li>Serverless Architecture</li>
+
+                    </ul>
+
+                    <span class="certificate-badge">AI Fundamentals</span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+ 
+
+        <!-- Projects Section -->
+
+        <section id="projects">
+
+            <div class="section-number">03</div>
+
+            <div class="section-header">
+
+                <div class="section-label">Selected works</div>
+
+                <h2 class="section-title">Featured Projects</h2>
+
+                <p class="section-description">
+
+                    A curated collection of projects that showcase technical proficiency, creative problem-solving, and measurable impact.
+
+                </p>
+
+            </div>
+
+ 
+
+            <div class="projects-grid">
+
+                <article class="project-card">
+
+                    <div class="project-visual">01</div>
+
+                    <div class="project-info">
+
+                        <h3>E-Commerce Platform</h3>
+
+                        <div class="project-tags">
+
+                            <span class="project-tag">React</span>
+
+                            <span class="project-tag">Node.js</span>
+
+                            <span class="project-tag">PostgreSQL</span>
+
+                            <span class="project-tag">Stripe</span>
+
+                        </div>
+
+                        <p class="project-description">
+
+                            Built a full-stack e-commerce solution handling 10,000+ daily transactions. Implemented real-time inventory management, payment processing, and an admin dashboard for analytics. Achieved 99.9% uptime and sub-2-second load times.
+
+                        </p>
+
+                        <a href="#" class="project-link">View Project</a>
+
+                    </div>
+
+                </article>
+
+ 
+
+                <article class="project-card">
+
+                    <div class="project-visual">02</div>
+
+                    <div class="project-info">
+
+                        <h3>Analytics Dashboard</h3>
+
+                        <div class="project-tags">
+
+                            <span class="project-tag">Vue.js</span>
+
+                            <span class="project-tag">D3.js</span>
+
+                            <span class="project-tag">Python</span>
+
+                            <span class="project-tag">FastAPI</span>
+
+                        </div>
+
+                        <p class="project-description">
+
+                            Designed and developed a real-time analytics dashboard processing millions of data points. Features interactive visualizations, custom reporting, and predictive insights. Reduced analysis time by 60% for stakeholders.
+
+                        </p>
+
+                        <a href="#" class="project-link">View Project</a>
+
+                    </div>
+
+                </article>
+
+ 
+
+                <article class="project-card">
+
+                    <div class="project-visual">03</div>
+
+                    <div class="project-info">
+
+                        <h3>Mobile App Redesign</h3>
+
+                        <div class="project-tags">
+
+                            <span class="project-tag">React Native</span>
+
+                            <span class="project-tag">UI/UX</span>
+
+                            <span class="project-tag">GraphQL</span>
+
+                            <span class="project-tag">Firebase</span>
+
+                        </div>
+
+                        <p class="project-description">
+
+                            Led complete redesign of a fitness tracking app, improving user engagement by 150%. Conducted user research, created design system, and implemented new features including social sharing and AI-powered workout recommendations.
+
+                        </p>
+
+                        <a href="#" class="project-link">View Project</a>
+
+                    </div>
+
+                </article>
+
+ 
+
+                <article class="project-card">
+
+                    <div class="project-visual">04</div>
+
+                    <div class="project-info">
+
+                        <h3>Enterprise SaaS Platform</h3>
+
+                        <div class="project-tags">
+
+                            <span class="project-tag">Next.js</span>
+
+                            <span class="project-tag">TypeScript</span>
+
+                            <span class="project-tag">AWS</span>
+
+                            <span class="project-tag">Microservices</span>
+
+                        </div>
+
+                        <p class="project-description">
+
+                            Architected and launched a B2B SaaS platform serving 500+ enterprise clients. Built scalable microservices, implemented multi-tenancy, and established CI/CD pipelines. Platform handles 1M+ API requests daily.
+
+                        </p>
+
+                        <a href="#" class="project-link">View Project</a>
+
+                    </div>
+
+                </article>
+
+ 
+
+                <article class="project-card">
+
+                    <div class="project-visual">05</div>
+
+                    <div class="project-info">
+
+                        <h3>Open Source Library</h3>
+
+                        <div class="project-tags">
+
+                            <span class="project-tag">JavaScript</span>
+
+                            <span class="project-tag">NPM</span>
+
+                            <span class="project-tag">Documentation</span>
+
+                            <span class="project-tag">Community</span>
+
+                        </div>
+
+                        <p class="project-description">
+
+                            Created and maintain a popular open-source library with 5K+ GitHub stars. Provides developers with elegant solutions for common UI patterns. Active community with regular updates and comprehensive documentation.
+
+                        </p>
+
+                        <a href="#" class="project-link">View Project</a>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+    </div>
+
+ 
+
+    <!-- Footer -->
+
+    <footer>
+
+        <div class="container">
+
+            <div class="footer-content">
+
+                <div class="footer-text">© 2024 Your Name. All rights reserved.</div>
+
+                <div class="footer-links">
+
+                    <a href=mailto:your.email@example.com>Email</a>
+
+                    <a href=https://linkedin.com target="_blank">LinkedIn</a>
+
+                    <a href=https://github.com target="_blank">GitHub</a>
+
+                    <a href=https://twitter.com target="_blank">Twitter</a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+ 
+
+    <script>
+
+        // Smooth scroll for navigation
+
+        document.querySelectorAll('nav a').forEach(anchor => {
+
+            anchor.addEventListener('click', function (e) {
+
+                e.preventDefault();
+
+                const target = document.querySelector(this.getAttribute('href'));
+
+                target.scrollIntoView({
+
+                    behavior: 'smooth',
+
+                    block: 'start'
+
+                });
+
+            });
+
+        });
+
+ 
+
+        // Hide scroll indicator after scrolling
+
+        window.addEventListener('scroll', () => {
+
+            const indicator = document.querySelector('.scroll-indicator');
+
+            if (window.scrollY > 100) {
+
+                indicator.style.opacity = '0';
+
+            } else {
+
+                indicator.style.opacity = '1';
+
+            }
+
+        });
+
+ 
+
+        // Add intersection observer for animations
+
+        const observerOptions = {
+
+            threshold: 0.1,
+
+            rootMargin: '0px 0px -100px 0px'
+
+        };
+
+ 
+
+        const observer = new IntersectionObserver((entries) => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.style.opacity = '1';
+
+                    entry.target.style.transform = 'translateY(0)';
+
+                }
+
+            });
+
+        }, observerOptions);
+
+ 
+
+        // Observe elements for scroll animations
+
+        document.querySelectorAll('.skill-card, .project-card, .resume-item').forEach(el => {
+
+            el.style.opacity = '0';
+
+            el.style.transform = 'translateY(30px)';
+
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+
+            observer.observe(el);
+
+        });
+
+    </script>
+
+</body>
+
+</html>
